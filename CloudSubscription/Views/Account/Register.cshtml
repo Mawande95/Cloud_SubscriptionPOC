@@ -1,0 +1,161 @@
+﻿@model Entities.DTOs.UserDTO
+<!DOCTYPE html>
+<style>
+    #page-container {
+        position: relative;
+        min-height: 100vh;
+        background-image: url('/assets/Images/Cloud5.jpg');
+    }
+
+    #content-wrap {
+        padding-bottom: 2.5rem; /* Footer height */
+    }
+
+    .contentDiv {
+        background-color: whitesmoke;
+        border-radius: 25px;
+    }
+
+    .textBlack {
+        color: black;
+    }
+</style>
+<section class="py-5" id="page-container">
+
+    <div class="container" id="content-wrap">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account</h1>
+                            </div>
+                            <form asp-action="Register" method="post" id="RegisterForm" class="user">
+                                <input type="hidden" id="hdfUserId" />
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label control-label small">First Name <span class="Error">*</span></label>
+                                            <input asp-for="FirstName" class="form-control form-control-sm rounded-0" />
+                                            <span asp-validation-for="FirstName" id="errorFirstName" class="text-danger small rounded-0"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label control-label small">Last Name <span class="Error">*</span></label>
+                                            <input asp-for="LastName" class="form-control form-control-sm rounded-0" />
+                                            <span asp-validation-for="LastName" id="errorLastName" class="text-danger small rounded-0"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label control-label small">Cell Phone Number <span class="Error">*</span></label>
+                                            <input asp-for="ContactNumber" class="form-control form-control-sm rounded-0" />
+                                            <span asp-validation-for="ContactNumber" id="errorCellPhone" class="text-danger small rounded-0"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label asp-for="EmailAddress" class="control-label control-label small">Email Address <span class="Error">*</span></label>
+                                            <input asp-for="EmailAddress" class="form-control form-control-sm rounded-0" />
+                                            <span asp-validation-for="EmailAddress" id="errorEmailAddress" class="text-danger small rounded-0"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-header">
+                                    Login Details
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label asp-for="Password" class="control-label control-label small validate">Password <span class="Error">*</span></label>
+                                                <input asp-for="Password" type="password" id="password1" class="form-control form-control-sm rounded-0 " />
+                                                <span toggle="#password1" class="fa fa-fw fa-eye field-icon toggle-password rounded-0 Passworda"></span>
+                                                <span asp-validation-for="Password" id="ePassword1" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label asp-for="Password" class="control-label control-label small">Confirm Password <span class="Error">*</span></label>
+                                                <input asp-for="ConfirmPassword" type="password" id="verify1" class="verify form-control form-control-sm rounded-0 " />
+                                                <span toggle="#verify1" class="fa fa-fw fa-eye field-icon toggle-password Passworda"></span>
+                                                <span id="errorConfirmPassword" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="submit" value="Register Account" class="btn btn-primary small col-12 btn-block btn-sm rounded-pill" />
+                                    </div>
+                                </div>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" asp-controller="Account" asp-action="Login">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--Spinner Modal-->
+
+    <div class="modal" id="busyModal" data-backdrop="static" data-keyboard="false">
+        <div class="center">
+            <img src="~/assets/Images/loader.gif" />
+        </div>
+        <button type="button" style="visibility: hidden" class="btn btn-secondary" id="btnClose" data-dismiss="modal" />
+    </div>
+    <button type="button" hidden="hidden" data-backdrop="static" data-toggle="modal" id="btnSuccessModal" data-target="#SuccessModal">
+    </button>
+    <!-- Success Modal-->
+    <div class="modal" tabindex="-1" role="dialog" id="SuccessModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title ">Registration Success</h5>
+                </div>
+                <div class="modal-body">
+                    <p id="successMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-pill" onclick="CloseModalSuccess()">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" hidden="hidden" data-backdrop="static" data-toggle="modal" id="btnFailModal" data-target="#FailedModal">
+    </button>
+    <!--End Of Failed Modal-->
+    <div class="modal" tabindex="-1" role="dialog" id="FailedModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title ">Registration Failded</h5>
+                </div>
+                <div class="modal-body">
+                    <p id="FailMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-pill" onclick="CloseModalFail()">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section scripts
+    {
+
+    <script src="~/js/Views/Account/Register.js?v=@DateTime.Now.Ticks.ToString()"></script>
+}
+</section>
+
+
+

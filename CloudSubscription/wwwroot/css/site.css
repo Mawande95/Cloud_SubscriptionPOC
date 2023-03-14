@@ -1,0 +1,14 @@
+
+.homepageHeader {
+    background-image: url('/assets/Images/Cloud3.jpg');
+    /*background-color:#666633;*/
+    min-height:400px
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+.textColor {
+    color: white;
+}

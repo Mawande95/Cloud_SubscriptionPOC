@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Smart CloudX </title>
+    <!-- Custom fonts for this template-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style2.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" asp-controller="Home" asp-action="Index"><strong>Home</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="About"><strong>About</strong></a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Contact"><strong>Contacts</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Home page Content-->
+    @RenderBody()
+    <!-- End Home page Content-->
+
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">All Rights Reserved Smart CloudX 2023</p></div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/lib/vendor/jquery/jquery.min.js"></script>
+    <script src="~/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.5/dist/popper.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>*@
+    <script src="~/lib/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/PasswordValidatorv2.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/lib/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/js/sb-admin-2.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

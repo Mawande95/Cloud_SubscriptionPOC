@@ -1,0 +1,89 @@
+﻿@model List<Entities.CloudServices>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    Layout = "_Layout";
+}
+<style>
+    /*body {
+                        padding: 20px;
+                    }*/
+</style>
+
+<!-- Header-->
+<header class="bg-dark py-5 homepageHeader">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Welcome to Smart CloudX  </h1>
+            <h3 class="lead fw-normal  mb-0 textColor">
+                Get one of our affordable and roubust web hosting packages to start your business.
+                Our vetted plans include Data Storage email accounts, a free .co.za domain, a free SSL certificate, and loads more.
+            </h3>
+        </div>
+    </div>
+
+</header>
+
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @if (Model != null)
+            {
+                @foreach (var service in Model)
+                {
+                    <div class="col mb-5 popper btn" data-bs-trigger="hover" data-bs-toggle="popover" id="@service.Id">                      
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            <!-- Product image-->
+                            @*<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />*@
+                            <div class="card-img-top" style="min-height:100px;background-color:#339966"></div>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">@service.ServiceName</h5>
+                                    <!-- Product reviews-->
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                    </div>
+                                    <!-- Product price-->
+
+                                    <span class="text-muted text-decoration-line-through">R @(service.Price + 200) </span>
+                                    <span class="text-muted"><strong>R @service.Price</strong></span>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a asp-controller="Account" asp-route-id="@service.Id" asp-action="Login" class="btn btn-outline-dark mt-auto" >Buy</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card popper-content d-none" style="width: 18rem;" id="@("child" + service.Id)">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">@service.SSDStorage SSDStorage</li>
+                            <li class="list-group-item">@service.EmailAccounts Email Accounts</li>
+                            <li class="list-group-item">@service.MSDatabase MS Database</li>
+                            <li class="list-group-item">@service.WebsitesAllowed Websites Allowed</li>
+                            <li class="list-group-item">@service.SSLCertificate SSL Certificate</li>
+                        </ul>
+                    </div>
+
+                }
+            }
+
+        </div>
+    </div>
+    @section scripts
+        {
+
+        <script src="~/js/Views/CloudService/Index.js?v=@DateTime.Now.Ticks.ToString()"></script>
+    }
+</section>

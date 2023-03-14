@@ -1,0 +1,42 @@
+﻿@model Entities.CloudServices
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12" style="padding:0px">
+            <div id="accordion">
+                <div class="card">
+                    @if (Model != null)
+                    {
+                        <div class="card-header text-center">
+                            <h2><strong>Congratulations!, you are about to get our @Model.ServiceName for only R @Model.Price </strong></h2>
+                        </div>
+                        <div class="card-body text-center">
+                            <ul class="list-group" style="padding:5px 40px 0 40px">
+                                <li class="list-group-item">SSDStorage:<strong>@Model.SSDStorage</strong> </li>
+                                <li class="list-group-item">Email Accounts:<strong>@Model.EmailAccounts</strong>  </li>
+                                <li class="list-group-item">Database:<strong>@Model.MSDatabase</strong>  </li>
+                                <li class="list-group-item">Websites Allowed:<strong>@Model.WebsitesAllowed</strong>  </li>
+                                <li class="list-group-item">Free SSL Certificate:<strong>@Model.SSLCertificate</strong>  </li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center"><a *@ href="/Billing/Index" class="btn btn-primary small btn-block">Continue to checkout</a></div>
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                            <br/>
+                            <br />
+                            <br />
+                        </div>                    
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
